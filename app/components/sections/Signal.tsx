@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { AnimatePresence, motion } from "motion/react";
+import { motion } from "motion/react";
 import { protocols, signalFeed } from "~/lib/content";
 import { SectionHeading } from "~/components/SectionHeading";
 import { Reveal } from "~/components/Reveal";
@@ -90,30 +90,28 @@ export function Signal() {
               </span>
             </div>
 
-            <div className="flex flex-col gap-0.5 p-4 font-mono text-[11px] leading-relaxed sm:text-xs">
-              <AnimatePresence initial={false}>
-                {lines.map((l) => (
-                  <motion.div
-                    key={l.id}
-                    layout
-                    initial={{ opacity: 0, x: -12 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ duration: 0.3 }}
-                    className="flex flex-wrap items-center gap-x-2 gap-y-0.5 whitespace-nowrap"
-                  >
-                    <span className="text-faint">{l.ts}</span>
-                    <span className="text-amber">{l.bits}</span>
-                    <span className="text-faint">0x{l.hex}</span>
-                    <span className="text-cyan">{l.op}</span>
-                    <span className="text-faint">{l.from}</span>
-                    <span className="text-violet">→</span>
-                    <span className="text-mute">{l.to}</span>
-                    <span className="text-emerald">{l.status}</span>
-                  </motion.div>
-                ))}
-              </AnimatePresence>
-              <div className="mt-1 flex items-center gap-2 text-emerald">
+            {/* Fixed-height, bottom-anchored log: rows are single-line and a
+                constant height, so new entries scroll up without reflowing. */}
+            <div className="flex h-[268px] flex-col justify-end gap-0 overflow-hidden p-4 font-mono text-[11px] leading-6 sm:text-xs">
+              {lines.map((l) => (
+                <motion.div
+                  key={l.id}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.25 }}
+                  className="flex h-6 shrink-0 items-center gap-x-2 overflow-hidden whitespace-nowrap"
+                >
+                  <span className="text-faint">{l.ts}</span>
+                  <span className="text-amber">{l.bits}</span>
+                  <span className="text-faint">0x{l.hex}</span>
+                  <span className="text-cyan">{l.op}</span>
+                  <span className="text-faint">{l.from}</span>
+                  <span className="text-violet">→</span>
+                  <span className="text-mute">{l.to}</span>
+                  <span className="text-emerald">{l.status}</span>
+                </motion.div>
+              ))}
+              <div className="flex h-6 shrink-0 items-center gap-2 text-emerald">
                 <span className="text-faint">$</span>
                 <span className="caret">tail -f bus</span>
               </div>
