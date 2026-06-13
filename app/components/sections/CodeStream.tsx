@@ -28,7 +28,7 @@ function CodePanel({
   caret,
 }: (typeof panels)[number] & { caret?: boolean }) {
   return (
-    <div className="relative overflow-hidden rounded-xl border border-line/80 bg-[#060a14]/90 backdrop-blur-md">
+    <div className="relative min-w-0 max-w-full overflow-hidden rounded-xl border border-line/80 bg-[#060a14]/90 backdrop-blur-md">
       {/* scanline */}
       <div
         aria-hidden
@@ -85,19 +85,19 @@ export function CodeStream() {
       </SectionHeading>
 
       <div className="mx-auto mt-14 grid max-w-6xl items-stretch gap-4 lg:grid-cols-[1fr_auto_1fr_auto_1fr]">
-        <Reveal>
+        <Reveal className="min-w-0">
           <CodePanel {...panels[0]} />
         </Reveal>
         <div className="flex items-center justify-center text-cyan lg:flex-col">
           <ArrowRight className="size-6 animate-pulse" />
         </div>
-        <Reveal delay={0.1}>
+        <Reveal delay={0.1} className="min-w-0">
           <CodePanel {...panels[1]} />
         </Reveal>
         <div className="flex items-center justify-center text-violet lg:flex-col">
           <ArrowRight className="size-6 animate-pulse" />
         </div>
-        <Reveal delay={0.2}>
+        <Reveal delay={0.2} className="min-w-0">
           <CodePanel {...panels[2]} caret />
         </Reveal>
       </div>
@@ -114,7 +114,7 @@ export function CodeStream() {
               sku · binary octets
             </span>
           </div>
-          <div className="p-4">
+          <div className="min-w-0 p-4">
             <HexDump text="SKU:TEE-BLK-M qty=2 bin=A-14-3" />
           </div>
         </div>
