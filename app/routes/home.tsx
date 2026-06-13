@@ -5,9 +5,11 @@ import { SceneBackground } from "~/components/three/SceneBackground";
 import { Nav } from "~/components/Nav";
 import { Hud } from "~/components/Hud";
 import { Footer } from "~/components/Footer";
+import { BitstreamDivider } from "~/components/BitstreamDivider";
 import { Hero } from "~/components/sections/Hero";
 import { IntegrationMesh } from "~/components/sections/IntegrationMesh";
 import { Systems } from "~/components/sections/Systems";
+import { Signal } from "~/components/sections/Signal";
 import { Pipeline } from "~/components/sections/Pipeline";
 import { CodeStream } from "~/components/sections/CodeStream";
 import { Capabilities } from "~/components/sections/Capabilities";
@@ -29,8 +31,8 @@ export function meta({}: Route.MetaArgs) {
 }
 
 export default function Home() {
-  // Six full-height "scenes" feed the HUD phase + camera depth mapping.
-  useMotionStateListeners(6);
+  // Full-height "scenes" feed the HUD phase + camera depth mapping.
+  useMotionStateListeners(7);
 
   return (
     <>
@@ -41,9 +43,13 @@ export default function Home() {
       <main className="relative z-10">
         <Hero />
         <IntegrationMesh />
+        <BitstreamDivider />
         <Systems />
+        <Signal />
+        <BitstreamDivider reverse />
         <Pipeline />
         <CodeStream />
+        <BitstreamDivider />
         <Capabilities />
         <Contact />
       </main>

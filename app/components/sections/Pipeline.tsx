@@ -6,7 +6,7 @@ export function Pipeline() {
   return (
     <section id="pipeline" className="relative px-5 py-28 md:py-36">
       <SectionHeading
-        index="03"
+        index="04"
         tag="The pipeline"
         title={<>Follow one order through the mesh.</>}
       >

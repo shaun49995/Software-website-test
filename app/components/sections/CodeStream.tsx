@@ -2,6 +2,7 @@ import { ArrowRight } from "lucide-react";
 import { codeSamples } from "~/lib/content";
 import { SectionHeading } from "~/components/SectionHeading";
 import { Reveal } from "~/components/Reveal";
+import { HexDump } from "~/components/HexDump";
 import { cn } from "~/lib/utils";
 
 const panels = [
@@ -75,7 +76,7 @@ export function CodeStream() {
   return (
     <section id="approach" className="relative px-5 py-28 md:py-36">
       <SectionHeading
-        index="04"
+        index="05"
         tag="Under the hood"
         title={<>Watch a payload become an instruction.</>}
       >
@@ -100,6 +101,24 @@ export function CodeStream() {
           <CodePanel {...panels[2]} caret />
         </Reveal>
       </div>
+
+      {/* Wire format — the same instruction, as raw bits on the wire */}
+      <Reveal delay={0.1}>
+        <div className="mx-auto mt-4 max-w-6xl overflow-hidden rounded-xl border border-line/80 bg-[#060a14]/90 backdrop-blur-md">
+          <div className="flex items-center justify-between border-b border-line/70 px-4 py-2.5">
+            <div className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.2em]">
+              <span className="h-1.5 w-1.5 rounded-full bg-cyan shadow-[0_0_10px_var(--color-cyan)]" />
+              <span className="text-cyan">WIRE · 0b</span>
+            </div>
+            <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-faint">
+              sku · binary octets
+            </span>
+          </div>
+          <div className="p-4">
+            <HexDump text="SKU:TEE-BLK-M qty=2 bin=A-14-3" />
+          </div>
+        </div>
+      </Reveal>
     </section>
   );
 }

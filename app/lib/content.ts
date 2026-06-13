@@ -159,10 +159,35 @@ export const stats = [
 export const navLinks = [
   { label: "Mesh", href: "#mesh" },
   { label: "Systems", href: "#systems" },
+  { label: "Signal", href: "#signal" },
   { label: "Pipeline", href: "#pipeline" },
   { label: "Approach", href: "#approach" },
   { label: "Contact", href: "#contact" },
 ];
+
+/** Wire protocols / transports we speak, scrolled as a marquee. */
+export const protocols = [
+  "REST", "GraphQL", "gRPC", "Webhooks", "EDI X12", "EDIFACT", "AS2",
+  "SFTP", "CSV/Flat", "SOAP", "Kafka", "AMQP", "Protobuf", "JSON-RPC",
+];
+
+/**
+ * Building blocks for the live binary event log. Lines are assembled at
+ * runtime into a streaming, never-repeating-looking feed.
+ */
+export const signalFeed = {
+  ops: [
+    { code: "0x01", bits: "00000001", name: "order.created", from: "shopify", to: "spine" },
+    { code: "0x02", bits: "00000010", name: "inventory.reserved", from: "spine", to: "erp" },
+    { code: "0x03", bits: "00000011", name: "pick.dispatched", from: "wms", to: "3pl" },
+    { code: "0x04", bits: "00000100", name: "shipment.tracked", from: "3pl", to: "spine" },
+    { code: "0x05", bits: "00000101", name: "payment.captured", from: "payments", to: "ledger" },
+    { code: "0x06", bits: "00000110", name: "stock.synced", from: "pos", to: "shopify" },
+    { code: "0x07", bits: "00000111", name: "listing.updated", from: "spine", to: "marketplace" },
+    { code: "0x08", bits: "00001000", name: "refund.settled", from: "payments", to: "erp" },
+  ],
+  statuses: ["ACK", "OK", "200", "COMMIT", "FLUSH"],
+};
 
 /**
  * Sample payloads shown in the "code stream" — a Shopify order being

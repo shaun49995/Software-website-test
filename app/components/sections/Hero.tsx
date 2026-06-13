@@ -3,6 +3,7 @@ import { ArrowDown, Plug } from "lucide-react";
 import { brand } from "~/lib/content";
 import { Badge } from "~/components/ui/badge";
 import { Button } from "~/components/ui/button";
+import { BinaryRain } from "~/components/BinaryRain";
 
 const PIPES = ["3PL", "ERP", "WMS", "SHOPIFY", "POS", "PAYMENTS", "MARKETPLACE"];
 
@@ -10,13 +11,19 @@ export function Hero() {
   return (
     <section
       id="top"
-      className="relative flex min-h-[100dvh] flex-col items-center justify-center px-5 pt-24 text-center"
+      className="relative flex min-h-[100dvh] flex-col items-center justify-center overflow-hidden px-5 pt-24 text-center"
     >
+      <BinaryRain
+        className="pointer-events-none absolute inset-0 h-full w-full"
+        opacity={0.1}
+        fontSize={18}
+        color="#38bdf8"
+      />
       <motion.div
         initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-        className="flex flex-col items-center"
+        className="relative z-10 flex flex-col items-center"
       >
         <Badge className="mb-6">
           <Plug className="size-3" />
@@ -50,7 +57,7 @@ export function Hero() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.6, duration: 1 }}
-        className="mask-x absolute bottom-24 left-0 w-full overflow-hidden md:bottom-28"
+        className="mask-x absolute bottom-24 left-0 z-10 w-full overflow-hidden md:bottom-28"
       >
         <div className="flex w-max animate-marquee gap-10 font-mono text-xs uppercase tracking-[0.3em] text-faint">
           {[...PIPES, ...PIPES].map((p, i) => (
@@ -68,7 +75,7 @@ export function Hero() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1, duration: 1 }}
-        className="absolute bottom-8 flex flex-col items-center gap-2 font-mono text-[10px] uppercase tracking-[0.25em] text-faint"
+        className="absolute bottom-8 z-10 flex flex-col items-center gap-2 font-mono text-[10px] uppercase tracking-[0.25em] text-faint"
       >
         descend
         <ArrowDown className="size-4 animate-bounce text-cyan" />

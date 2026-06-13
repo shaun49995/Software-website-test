@@ -5,6 +5,7 @@ const PHASES = [
   "BOOT",
   "MESH",
   "SYSTEMS",
+  "SIGNAL",
   "PIPELINE",
   "APPROACH",
   "UPLINK",

@@ -1,5 +1,6 @@
 import { capabilities, stats } from "~/lib/content";
 import { Reveal } from "~/components/Reveal";
+import { CountUp } from "~/components/CountUp";
 
 export function Capabilities() {
   return (
@@ -32,9 +33,11 @@ export function Capabilities() {
           <div className="mt-4 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-line/80 bg-line/60 md:grid-cols-4">
             {stats.map((s) => (
               <div key={s.label} className="bg-card/70 p-6 text-center backdrop-blur-md">
-                <div className="gradient-text font-mono text-2xl font-bold sm:text-3xl">
-                  {s.value}
-                </div>
+                <CountUp
+                  value={s.value}
+                  className="gradient-text block font-mono text-2xl font-bold sm:text-3xl"
+                />
+                <span className="sr-only">{s.value}</span>
                 <div className="mt-1.5 font-mono text-[10px] uppercase tracking-[0.16em] text-faint">
                   {s.label}
                 </div>
